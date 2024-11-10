@@ -21,7 +21,7 @@ This repository contains the codebase for a scalable, modular application built 
 1. **Clone the Repository**
     ```bash
     git clone <repository-url>
-    cd <repository-name>
+    cd demo-rag
     ```
 
 2. **Environment Configuration**
