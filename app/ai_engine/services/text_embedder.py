@@ -1,4 +1,5 @@
 from injector import Inject
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
@@ -9,18 +10,26 @@ from app.core.settings import Settings
 class TextEmbedder(TextEmbedderPort):
     def __init__(self, settings: Inject[Settings],):
         self.model = SentenceTransformer(settings.EMBEDDING_MODEL_NAME)
+        self.splitter = RecursiveCharacterTextSplitter(
+            chunk_size=500,
+            chunk_overlap=100,
+            is_separator_regex=False,
+            keep_separator=False,
+            separators=["\n\n", ".\n" ". ", '.'],
+        )
 
     def embed_docs(self, documents):
         data = []
         for doc in documents:
-            embedding = self.model.encode(doc.page_content)
-            data.append(
-                {
-                    "embeddings": embedding,
-                    "page_content": doc.page_content,
-                    "page_number": doc.metadata["page"],
-                }
-            )
+            for content in self.splitter.split_text(doc.page_content):
+                embedding = self.model.encode(content)
+                data.append(
+                    {
+                        "embeddings": embedding,
+                        "page_content": content,
+                        "page_number": doc.metadata["page"],
+                    }
+                )
 
         return data
 

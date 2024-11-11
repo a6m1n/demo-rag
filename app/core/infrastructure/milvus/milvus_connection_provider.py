@@ -33,7 +33,8 @@ class MilvusConnectionProvider(MilvusConnectionPort):
 
             if index_name not in self.client.list_indexes(self.collection_name):
                 index_params.add_index(
-                    metric_type="L2",
+                    metric_type="IP",
+                    # metric_type="L2",
                     index_type="IVF_FLAT",
                     params={"nlist": 1024},
                     field_name=field_name,
@@ -97,13 +98,13 @@ class MilvusConnectionProvider(MilvusConnectionPort):
     def search_data(
         self,
         query_vectors: np.ndarray,
-        limit: int = 2,
+        limit: int = 5,
         output_fields: Union[List, None] = None,
         filename: str = None,
     ):
         """Search data by embedding"""
         if output_fields is None:
-            output_fields = ["page_content", "filename", "page_number"]
+            output_fields = ["page_content", "filename", "page_number", "embedding"]
 
         _filter = None
         if filename:

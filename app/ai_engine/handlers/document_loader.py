@@ -34,4 +34,4 @@ class DocumentLoaderHandler(BaseHandler):
         except ValueError as e:
             raise HTTPException(status_code=400, detail=str(e))
 
-        return DocumentLoaderResponse(message=f"{req.file.filename} was uploaded")
+        return DocumentLoaderResponse(message=f"The file '{req.file.filename}' was successfully uploaded")
