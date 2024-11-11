@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi_injector import attach_injector
 from injector import Injector
 
+from app.ai_engine.injector import AiEngineModule
 from app.core.injector import CoreModule
 from app.ai_engine.routes import ai_router
 from app.core.setup_pydiator import setup_pydiator
@@ -12,6 +13,7 @@ def setup_injector():
     injector = Injector(
         [
             CoreModule,
+            AiEngineModule,
         ]
     )
 

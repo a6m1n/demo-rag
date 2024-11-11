@@ -7,3 +7,4 @@ class Settings(BaseSettings):
         env_file_encoding = "utf-8"
 
     MILVUS_URL: str
+    EMBEDDING_MODEL_NAME: str = 'all-MiniLM-L6-v2'

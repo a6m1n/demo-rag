@@ -4,3 +4,8 @@ uvicorn==0.32.0
 fastapi-injector==0.6.2
 pydiator-core==1.0.12
 pydantic-settings==2.6.1
+PyMuPDF==1.24.13
+sentence-transformers==3.2.1
+langchain==0.3.7
+langchain-community==0.3.5
+pypdf==5.1.0
