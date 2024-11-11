@@ -23,3 +23,7 @@ class TextEmbedderPort(Protocol):
 
     @abstractmethod
     def split_documents(self, documents: List[Document]): ...
+
+
+@runtime_checkable
+class AIDialogPort(Protocol): ...

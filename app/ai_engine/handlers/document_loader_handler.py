@@ -24,11 +24,11 @@ class DocumentLoaderHandler(BaseHandler):
         self,
         document_loader: Inject[DocumentLoaderPort],
         text_embedder: Inject[TextEmbedderPort],
-        milvus_client: Inject[DbConnectionPort],
+        db_client: Inject[DbConnectionPort],
     ):
         self.document_loader = document_loader
         self.text_embedder = text_embedder
-        self.db_client = milvus_client
+        self.db_client = db_client
 
     async def handle_creation_for_milvus(self, req: DocumentLoaderRequest):
         docs = await self.document_loader.load_document(req.file)
