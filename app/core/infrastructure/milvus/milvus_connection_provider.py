@@ -4,21 +4,17 @@ import numpy as np
 from injector import Inject
 from pymilvus import MilvusClient, FieldSchema, CollectionSchema, DataType
 
-from app.core.ports import MilvusConnectionPort
+from app.core.ports import DbConnectionPort
 from app.core.settings import Settings
 
 
-class MilvusConnectionProvider(MilvusConnectionPort):
-    collection_name = "document_embeddings"
-    client = None
-
+class MilvusConnectionProvider(DbConnectionPort):
     def __init__(
         self,
         settings: Inject[Settings],
     ):
-        self.uri = settings.MILVUS_URL
+        self.uri = settings.DB_URL
         self._initialize_client()
-
 
     def _create_index(self):
         """

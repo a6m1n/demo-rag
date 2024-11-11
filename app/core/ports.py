@@ -5,21 +5,15 @@ import numpy as np
 
 
 @runtime_checkable
-class MilvusConnectionPort(Protocol):
-    @abstractmethod
-    def close(self):
-        ...
+class DbConnectionPort(Protocol):
+    collection_name = "document_embeddings"
+    client = None
 
     @abstractmethod
-    def insert_embedding(self, embed_data, filename):
-        ...
+    def close(self): ...
 
     @abstractmethod
-    def search_data(
-        self,
-        query_vectors: np.ndarray,
-        limit: int = 2,
-        output_fields: Union[List, None] = None,
-        filename: str = None,
-    ):
-        ...
+    def insert_embedding(self, *args, **kwargs): ...
+
+    @abstractmethod
+    def search_data(self, *args, **kwargs): ...

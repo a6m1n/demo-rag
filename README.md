@@ -2,7 +2,12 @@
 
 ## Overview
 
-This repository contains the codebase for a scalable, modular application built using FastAPI, with dependency injection and event-driven architecture principles. The project leverages `pydiator` for implementing the mediator pattern, `fastapi-injector` for dependency injection, and `pymilvus` for database interactions.
+This repository contains the codebase for a scalable, modular application built using FastAPI, adhering to Clean Architecture principles. The project is structured to enhance maintainability, testability, and scalability by decoupling business logic from external frameworks and infrastructure. With dependency injection and event-driven architecture, the application promotes separation of concerns, making it resilient to change and easy to extend.
+
+Key components of this architecture include:
+- `pydiator` for implementing the mediator pattern, managing requests and commands for streamlined interactions.
+- `fastapi-injector` for dependency injection, enabling modular service configuration and enhancing testability.
+- `pymilvus` or `postgresql` for database interactions, facilitating robust and efficient handling of vector data in AI-driven applications.
 
 ## Table of Contents
 
@@ -16,7 +21,7 @@ This repository contains the codebase for a scalable, modular application built 
 
 ---
 
-### Getting Started
+### Getting Started with docker
 
 1. **Clone the Repository**
     ```bash
@@ -27,7 +32,7 @@ This repository contains the codebase for a scalable, modular application built 
 2. **Environment Configuration**
    - Copy the example environment file to a new `.env` file and fill in any necessary values:
      ```bash
-     cp .example.env .env
+     cp .env.example .env
      ```
 
 3. **Build and Run with Docker**
@@ -35,6 +40,32 @@ This repository contains the codebase for a scalable, modular application built 
      ```bash
      docker-compose up --build
      ```
+
+### Getting Started without Docker
+
+1. **Clone the Repository**
+   - Start by cloning the repository and navigating to the project directory:
+     ```bash
+     git clone <repository-url>
+     cd demo-rag
+     ```
+
+2. **Configure the Environment**
+   - Copy the example environment file to create a new `.env` file, then fill in any necessary configuration values:
+     ```bash
+     cp .env.example .env
+     ```
+
+3. **Set Up PostgreSQL with PGVector**
+   - Ensure that PostgreSQL is running on your system and that the PGVector extension is installed and enabled. This extension is required for efficient vector data handling within the database.
+
+4. **Run the Application**
+   - Start the FastAPI application in development mode using Uvicorn:
+     ```bash
+     uvicorn app.main:app --reload
+     ```
+
+After completing these steps, the application will be accessible locally, typically at [http://localhost:8000](http://localhost:8000). You can explore the API documentation and interact with the endpoints via the Swagger UI, available at `/docs`.
 
 ### Configuration
 
@@ -69,7 +100,8 @@ Using `fastapi-injector`, you can configure dependencies centrally, ensuring con
 ### Additional Resources
 
 - [FastAPI Documentation](https://fastapi.tiangolo.com/)
-- [pydiator Documentation](https://github.com/ozgurkara/pydiator-core)
-- [fastapi-injector GitHub](https://github.com/matyasrichter/fastapi-injector)
+- [Pydiator Documentation](https://github.com/ozgurkara/pydiator-core)
+- [Fastapi-injector GitHub](https://github.com/matyasrichter/fastapi-injector)
+- [Quickstart review Milvus](https://milvus.io/docs/quickstart.md)
 
 ---

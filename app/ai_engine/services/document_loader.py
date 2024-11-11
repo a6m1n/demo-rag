@@ -25,9 +25,7 @@ class DocumentLoader(DocumentLoaderPort):
             # elif extension == TXT_EXTENSION:
             #     return await TxtLoader.load(file)
             else:
-                raise ValueError(
-                    "Unsupported file format. Please provide a .pdf file"
-                )
+                raise ValueError("Unsupported file format. Please provide a .pdf file")
         elif isinstance(file, str):
             return file
         else:
