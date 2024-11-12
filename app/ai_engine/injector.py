@@ -20,5 +20,5 @@ class AiEngineModule(injector.Module):
 
     @injector.provider
     @injector.singleton
-    def get_text_embedder(self, settings: Settings) -> AIDialogPort:
+    def get_ai_dialog_chain(self, settings: Settings) -> AIDialogPort:
         return AIDialogService(settings)
